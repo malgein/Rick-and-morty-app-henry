@@ -1,0 +1,139 @@
+.detailApp{
+    min-height: 100vh;
+    background: linear-gradient(to right, #005c98, #505BDA);
+}
+
+.container{
+    margin-top: 49px;
+    padding-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Roboto;
+    color: #ffffff95;
+}
+
+.imageContainer img{
+    border-radius: 50%;
+}
+
+/* Efecto burbujas */
+
+.burbuja{
+    width: 80px;
+    height: 80px;
+    background: #fff ;
+    opacity: .3;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -150;
+    left: 5%;
+    /* background-color: black; */
+    animation: burbujas 3s linear infinite;
+}
+
+.burbuja:nth-child(1){
+    width: 80px;
+    height: 80px;
+    left: 5%;
+    animation-duration: 3s;
+    /* animation-delay: 3s; */
+}
+
+.burbuja:nth-child(2){
+    width: 100px;
+    height: 100px;
+    left: 35%;
+    animation-duration: 3s;
+    /* animation-delay: 5s; */
+}
+
+.burbuja:nth-child(3){
+    width: 20px;
+    height: 20px;
+    left: 90%;
+    animation-duration: 5s;
+    /* animation-delay: 5s; */
+}
+
+.burbuja:nth-child(4){
+    width: 20px;
+    height: 20px;
+    left: 15%;
+    animation-duration: 3s;
+    /* animation-delay: 5s; */
+}
+
+
+.burbuja:nth-child(5){
+    width: 60px;
+    height: 60px;
+    left: 75%;
+    animation-duration: 4s;
+    /* animation-delay: 5s; */
+}
+.burbuja:nth-child(6){
+    width: 35px;
+    height: 35px;
+    left: 23%;
+    animation-duration: 4s;
+    /* animation-delay: 5s; */
+}
+.burbuja:nth-child(7){
+    width: 65px;
+    height: 65px;
+    left: 15%;
+    animation-duration: 6s;
+    /* animation-delay: 5s; */
+}
+.burbuja:nth-child(8){
+    width: 90px;
+    height: 90px;
+    left: 52%;
+    animation-duration: 5s;
+    /* animation-delay: 5s; */
+}
+.burbuja:nth-child(9){
+    width: 65px;
+    height: 65px;
+    left: 51%;
+    animation-duration: 2s;
+    /* animation-delay: 5s; */
+}
+.burbuja:nth-child(10){
+    width: 40px;
+    height: 40px;
+    left: 25%;
+    animation-duration: 1s;
+    /* animation-delay: 5s; */
+}
+.burbuja:nth-child(10){
+    width: 34px;
+    height: 34px;
+    left: 95%;
+    animation-duration: 6s;
+    /* animation-delay: 5s; */
+}
+.burbuja:nth-child(10){
+    width: 50px;
+    height: 50px;
+    left: 85%;
+    animation-duration: 4s;
+    /* animation-delay: 5s; */
+}
+@keyframes burbujas{
+    0%{
+        bottom: 0;
+        opacity:0
+    }
+    30%{
+        transform: translateX(30px)
+    }
+    50%{
+        opacity: .4;
+    }
+    100%{
+        bottom:100vh;
+        opacity: 0;
+    }
+}

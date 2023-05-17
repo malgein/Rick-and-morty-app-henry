@@ -1,0 +1,20 @@
+.App{
+    margin-top: 60px;
+    background: url('https://images6.alphacoders.com/909/thumb-1920-909641.png');
+    min-height: 100vh;
+    background-size: 100%;
+    background-attachment: fixed;
+ }
+ 
+ .title{
+    text-align: center;
+    font-family: fantasy;
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+font-size: 45px;
+
+
+    
+
+ }

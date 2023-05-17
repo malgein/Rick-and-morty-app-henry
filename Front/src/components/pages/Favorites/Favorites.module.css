@@ -1,0 +1,104 @@
+.container{
+    min-height: 100vh;
+    margin-top: 60px;
+    background: url('https://wallpapercave.com/wp/wp6736837.jpg');
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+.clasification{
+    padding-top: 30px;
+    display:flex;
+    justify-content: space-around;
+}
+
+.containerCardFav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .containerFav {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    width: 300px;
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .containerFav:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    transform: translateY(-5px);
+  }
+  
+  .containerFav img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .idNumber {
+    margin-top: 10px;
+    font-size: 20px;
+    color: gray;
+  }
+  
+  .name {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .markFavorite {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    color: red;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .markFavorite:hover {
+    transform: scale(1.2);
+  }
+  
+
+
+select {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 0 10px;
+  background-color: #fff;
+  color: #333;
+}
+
+select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+option {
+  background-color: #fff;
+  color: #333;
+}
+
+option:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+
+.containerCardFav{
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}

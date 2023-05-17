@@ -1,0 +1,35 @@
+
+.input {
+    width: 25%;
+    padding: 10px 10px;
+    background: none;
+    color: #706c6c;
+    font-size: 1rem;
+    border: none;
+    background-color: #e6dede;
+    outline: none;
+    border-bottom: 1px solid #000;
+    border-radius: 20px;
+}
+
+.warning{
+    width: 25%;
+    background: none;
+    padding: 10px 10px;
+    color: #706c6c;
+    font-size: 1rem;
+    border: solid 2px red;
+    background-color: white;
+    outline: none;
+   
+    border-radius: 20px;
+    animation: slide-right 0.4s linear both;
+}
+@keyframes slide-right{
+    0%{
+        transform:translateX(100px)
+    }100%{
+        transform:translateX(0)
+    }
+}
+
