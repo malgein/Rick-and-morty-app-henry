@@ -46,7 +46,7 @@ function App() {
 	const onSearch = async(id) => {
 
 		// const data = await fetch(`https://rickandmortyapi.com/api/character/${id}`)
-		const data = await fetch(`http://localhost:3001/rickandmorty/${id}`)
+		const data = await fetch(`http://localhost:3001/rickandmorty/character/${id}`)
 		const dataJson = await data.json()
 		
 		let characterFoundIt = false
