@@ -13,12 +13,15 @@ server.use(express.json());
 
 
 // Para devolver el hola mundo en formato Json
-// server.get('/', function (req, res) {
-//     var obj = {
-//        saludo: 'Hola mundo!',
-//     };
-//     res.json(obj);
-//  });
+server.get('/', function (req, res) {
+
+	// console.log(req.body)
+
+    var obj = {
+       saludo: 'Hola mundo!',
+    };
+    res.json(obj);
+ });
 
 // server.post('/', function (req, res) {
 //     var obj = {
@@ -34,7 +37,7 @@ server.use(express.json());
 		// console.log(req.hasOwnProperty('body'))
 		const {author, title, contents} = req.body
 		 if(!author || !title || !contents){
-			return res.status(STATUS_USER_ERROR).json({error: 'No se recibieron los parametros necesarios para crear el Post'})
+			return res.status(400).json({error: 'No se recibieron los parámetros necesarios para crear la publicación'})
 		}
 		const newPost = {
 			id: id++,
@@ -47,24 +50,75 @@ server.use(express.json());
 	}
 )
 
-server.post('/posts/author/:author', (req, res) => {
-	const {title, contents} = req.body
-	const {author} = req.params
+server.get('/posts', (req, res) => {
+	const {term} = req.query
 
-	if(!author || !title || !contents){
-		return res.status(STATUS_USER_ERROR).json({error: 'No se recibieron los parametros necesarios para crear el post'})
+	if(term){
+		const getTerm = publications.filter(p => p.title.includes(term)) || p.contents.includes(term)
+
+		return res.status(200).json(getTerm)
+	}	else {
+		return res.status(400).json({"error": "No existe ninguna publicación con dicho título y autor indicado"})
 	}
-	const newPost = {
-		id: id++,
-		author,
-		title,
-		contents
-	}
-	publications.push(newPost)
-	res.status(200).json(newPost)
+
 })
 
-server
+server.get('/posts/author/:author', (req, res) => {
+	// const {title, contents} = req.body
+	// const {author} = req.params
+
+	// if(!author || !title || !contents){
+	// 	return res.status(400).json({error: "No existe ninguna publicación con dicho título y autor indicado"})
+	// }
+	// const newPost = {
+	// 	id: id++,
+	// 	author,
+	// 	title,
+	// 	contents
+	// }
+	// publications.push(newPost)
+	// res.status(200).send(publications)
+
+	const {author} = req.params
+
+	const postOfAuthor = publications.filter(p => p.author === author)
+
+	if (postOfAuthor.length) return res.status(200).json(postOfAuthor)
+	res.status(400).json({"error": "No existe ninguna publicación del autor indicado"})
+ })
+
+
+ server.put('/posts', (req, res) => {
+	const {id, title, contents} = req.body
+
+	if(!id || !title || !contents){
+		res.status(400).json({error: "No se recibieron los parámetros necesarios para modificar la publicación"})
+	}
+	const findPost = publications.find(p => p.id === Number(id))
+
+	if(findPost){
+		findPost.title = title
+		findPost.contents = contents
+		return res.status(200).json(findPost)
+	}
+
+	res.status(400).json({error: 'No se recibió el id correcto necesario para modificar la publicación'})
+
+ })
+
+ server.delete('/posts', (req, res) => {
+	const {id} = req.body
+
+	const findPost = publications.find(p => p.id === Number(id))
+
+
+	if(!id || !findPost){
+		return res.status(400).json({error: "No se recibió el id correcto necesario para eliminar la publicación"})
+	}
+	publications = publications.filter(p => p.id !== Number(id))
+	res.status(200).json({ success: true})
+ })
+// server
 
 
 
