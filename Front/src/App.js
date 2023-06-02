@@ -9,6 +9,7 @@ import Detail from './components/pages/Detail/Detail.jsx'
 import Favorites from './components/pages/Favorites/Favorites.jsx'
 import Error404 from './components/pages/Error404/Error404';
 import axios from 'axios'
+import axios from 'axios'
 
 
 
@@ -26,29 +27,40 @@ function App() {
 
 	const PASSWORD = 'xxxxxx1'
 
-	// const login = userData => {
-	// 	if(EMAIL===userData.email && PASSWORD===userData.password){
-	// 		setAccess(true)
-	// 		navigate('/home')
-	// 	} else if(EMAIL!==userData.email && PASSWORD!==userData.password){
-	// 		alert('Los datos introducidos son incorrectos')
-	// 	}	else if(EMAIL!==userData.email){
-	// 		alert('El email que introduciste es incorrecto')
-	// 	}	else if(PASSWORD!==userData.password){
-	// 		alert('El password introducido es incorrecto')
-	// 	}
-	// }
+	const login = userData => {
+		// if(EMAIL===userData.email && PASSWORD===userData.password){
+		// 	setAccess(true)
+		// 	navigate('/home')
+		// } else if(EMAIL!==userData.email && PASSWORD!==userData.password){
+		// 	alert('Los datos introducidos son incorrectos')
+		// }	else if(EMAIL!==userData.email){
+		// 	alert('El email que introduciste es incorrecto')
+		// }	else if(PASSWORD!==userData.password){
+		// 	alert('El password introducido es incorrecto')
+		// }
 
-	function login(userData) {
-		const { email, password } = userData;
-		console.log(email, password)
-		const URL = 'http://localhost:3001/rickandmorty/login/';
-		axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
-			 const { access } = data;
-			 setAccess(data);
-			 access && navigate('/home');
-		});
- }
+		const {email, password} = userData
+
+		const url = 'http://localhost:3001/rickandmorty/login/'
+
+		axios.get(url + `?email=${email}&password=${password}`).then(({data}) =>{
+			let {access} = data
+
+			// setAccess(data)
+			// console.log(typeof access)
+			if(access==='true'){
+				navigate('/home')
+			}	else{
+				alert('Los datos introducidos son incorrectos')
+			}
+			// access && navigate('/home') 
+			
+		})
+		// console.log(access)
+		// if (!access){
+		// 	alert('Los datos introducidos son incorrectos')
+		// }
+	}
 
 	const logOut = () => {
 		setAccess(false)

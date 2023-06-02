@@ -14,13 +14,16 @@ const rootReducer = (state = initialState, {type, payload}) =>{
 		// 	}
 		case ADD_FAV:
       return { ...state, myFavorites: payload, allCharacters: payload };
+
 		// case REMOVE_FAV:
 		// 	const filtered = state.myFavorites.filter(character => character.id !== payload)
 		// 	return{
 		// 		...state, myFavorites: filtered
 		// 	}
+
 		case REMOVE_FAV:
       return { ...state, myFavorites: payload };
+
 			case FILTER:
 				const charactersFiltered = [...state.allCharacters].filter(elem => elem.gender=== payload)
 				return{

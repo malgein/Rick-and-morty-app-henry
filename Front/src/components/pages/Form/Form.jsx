@@ -23,6 +23,7 @@ const Form = ({login}) => {
 	const handleSubmit = event => {
 		event.preventDefault()
 		login(userData)
+		console.log(userData)
 	}
 
 // const el = document.getElementById('poster')
@@ -145,10 +146,10 @@ const Form = ({login}) => {
 		<form style={style.container} onSubmit={handleSubmit}>
 			<div style={style.image} onMouseMove={handleMouseMove} ></div>
 			<label style={style.label}>EMAIL</label>
-			<input value={userData.email} placeholder='malgein17@mail.com' name='email' onChange={handleChange} className={errors.email ? styles.warning: styles.input} required/>
+			<input value={userData.email} placeholder='@mail.com' name='email' onChange={handleChange} className={errors.email ? styles.warning: styles.input} required/>
 			<p style={style.danger}>{errors.email}</p>
 			<label style={style.label}>PASSWORD</label>
-			<input type='password' value={userData.password} name='password' placeholder='XXXXXX1' onChange={handleChange} className={errors.password ? styles.warning : styles.input} required />
+			<input type='password' value={userData.password} name='password' placeholder='XXXXXX' onChange={handleChange} className={errors.password ? styles.warning : styles.input} required />
 			<p style={style.danger}>{errors.password}</p>
 			<button type='submit' style={style.btn}>Submit</button>
 		</form>
