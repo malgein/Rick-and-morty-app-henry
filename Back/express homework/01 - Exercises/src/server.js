@@ -33,7 +33,7 @@ server.get('/', function (req, res) {
  let id = 1
 
  server.post('/posts', (req, res) => {
-		console.log(req.body)
+		//console.log(req.body)
 		// console.log(req.hasOwnProperty('body'))
 		const {author, title, contents} = req.body
 		 if(!author || !title || !contents){
@@ -51,16 +51,21 @@ server.get('/', function (req, res) {
 )
 
 server.get('/posts', (req, res) => {
-	const {term} = req.query
+	// const {term} = req.query
 
-	if(term){
-		const getTerm = publications.filter(p => p.title.includes(term)) || p.contents.includes(term)
+	// if(term){
+	// 	const getTerm = publications.filter(p => p.title.includes(term)) || p.contents.includes(term)
 
-		return res.status(200).json(getTerm)
+	// 	return res.status(200).json(getTerm)
+	// }	else {
+	// 	return res.status(400).json({"error": "No existe ninguna publicación con dicho título y autor indicado"})
+	// }
+
+	if(publications.length === 0){
+		return res.status(400).json({error: 'No se encontraron publicaciones'})
 	}	else {
-		return res.status(400).json({"error": "No existe ninguna publicación con dicho título y autor indicado"})
+		return res.status(200).json(publications)
 	}
-
 })
 
 server.get('/posts/author/:author', (req, res) => {
@@ -88,21 +93,44 @@ server.get('/posts/author/:author', (req, res) => {
  })
 
 
- server.put('/posts', (req, res) => {
-	const {id, title, contents} = req.body
+ server.put('/posts/:id', (req, res) => {
+	// const {id, title, contents} = req.body
+	
 
-	if(!id || !title || !contents){
-		res.status(400).json({error: "No se recibieron los parámetros necesarios para modificar la publicación"})
+	// if(!id || !title || !contents){
+	// 	res.status(400).json({error: "No se recibieron los parámetros necesarios para modificar la publicación"})
+	// }
+	// const findPost = publications.find(p => p.id === Number(id))
+
+	// if(findPost){
+	// 	findPost.title = title
+	// 	findPost.contents = contents
+	// 	return res.status(200).json(findPost)
+	// }
+
+	// res.status(400).json({error: 'No se recibió el id correcto necesario para modificar la publicación'})
+
+	const {id} = req.params
+
+	const {author, title, contents} = req.body
+
+	const searchPublicationsById = publications.find(pub => pub.id === Number(id))
+
+	//console.log(searchPublicationsById)
+
+	if(!searchPublicationsById){
+		return res.status(404).json({error: 'No se recibió el id correcto necesario para modificar la publicación'})
 	}
-	const findPost = publications.find(p => p.id === Number(id))
 
-	if(findPost){
-		findPost.title = title
-		findPost.contents = contents
-		return res.status(200).json(findPost)
-	}
-
-	res.status(400).json({error: 'No se recibió el id correcto necesario para modificar la publicación'})
+	if(author && title && contents){
+		searchPublicationsById.author = author
+		searchPublicationsById.title = title
+		searchPublicationsById.contents = contents
+		res.json(searchPublicationsById)
+	}	
+	// else{
+	// 	throw('falta completar datos')
+	// }
 
  })
 
@@ -119,10 +147,6 @@ server.get('/posts/author/:author', (req, res) => {
 	res.status(200).json({ success: true})
  })
 // server
-
-
-
-
 
 //NO MODIFICAR EL CODIGO DE ABAJO. SE USA PARA EXPORTAR EL SERVIDOR Y CORRER LOS TESTS
 module.exports = { publications, server };

@@ -9,7 +9,7 @@ import Detail from './components/pages/Detail/Detail.jsx'
 import Favorites from './components/pages/Favorites/Favorites.jsx'
 import Error404 from './components/pages/Error404/Error404';
 import axios from 'axios'
-import axios from 'axios'
+
 
 
 
