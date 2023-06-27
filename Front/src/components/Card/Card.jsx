@@ -5,7 +5,9 @@
  import { connect } from 'react-redux';
 
 
-function Card({onClose, addFavorite, myFavorites, id, name, gender, image, species, removeFavorite}) {
+function Card({onClose, addFavorite, myFavorites, id, name, gender, image, species, origin, status, removeFavorite}) {
+
+	origin = origin.name
 
 	const [isFav, setIsFav] = useState(false)
 	 
@@ -15,7 +17,7 @@ function Card({onClose, addFavorite, myFavorites, id, name, gender, image, speci
 			removeFavorite(id)
 		}	else{
 			setIsFav(true)
-			addFavorite({id, name, species, image, gender, onClose})
+			addFavorite({id, name, status, species, gender, origin, image, onClose})
 		}
 		console.log(myFavorites)
 	}

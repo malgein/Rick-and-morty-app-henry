@@ -32,7 +32,7 @@ const Favorites = ({myFavorites}) => {
 					<option value='Male'>Male</option>
 					<option value='Female'>Female</option>
 					<option value='Genderless'>Genderless</option>
-					<option value='unknow'>Unknow</option>
+					<option value='unknown'>Unknow</option>
 				</select>
 			</div>
 			<div className={styles.containerCardFav}>

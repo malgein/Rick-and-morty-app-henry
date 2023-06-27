@@ -44,11 +44,12 @@ function App() {
 		const url = 'http://localhost:3001/rickandmorty/login/'
 
 		axios.get(url + `?email=${email}&password=${password}`).then(({data}) =>{
+			console.log(data)
 			let {access} = data
 
 			// setAccess(data)
 			// console.log(typeof access)
-			if(access==='true'){
+			if(access===true){
 				navigate('/home')
 			}	else{
 				alert('Los datos introducidos son incorrectos')

@@ -1,14 +1,29 @@
-const axios = require('axios')
-const users = require('../utils/users')
+const {User} = require('../DB_connection')
 
-const login = (req, res) => {
-		// console.log(req.query)
-		let { password, email} = req.query
+const login  = async(req, res) => {
+	try {
+		const {email, password} = req.query
 
-		// console.log(user)
-		if(users[0].email === email && users[0].password === 		password) {
-		res.status(200).json({access: true})
-		}	else res.status(200).json({access: false})
+		// console.log(email, password)
+		if(!email || !password){
+			return res.status(400).send('faltan datos')
+		}
+		const user = await User.findOne({
+			where: {email: email}
+		})
+
+		if(!user) return res.status(404).send('Usuario no encontrado')
+
+		if(user.password === password){
+			return res.json({
+				access: true
+			})
+		}	else{
+			return res.status(403).send('clave incorrecta')
+		}
+	} catch (error) {
+		return res.status(500).json(error.message)
 	}
+}
 
-module.exports= login
+module.exports = login
